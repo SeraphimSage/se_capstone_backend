@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 
 from capstone_backend_app.models import MyUser, SavedAsteroid, Comment
