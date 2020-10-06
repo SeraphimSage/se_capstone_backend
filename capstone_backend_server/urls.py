@@ -14,8 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+from rest_framework import routers
+
+from capstone_backend_app import views
+
+router = routers.DefaultRouter()
+router.register(r'user', views.UserViewSet, basename='user/')
+router.register(r'savedasteroid', views.SavedAsteroidViewSet,
+                basename='savedasteroid/')
+router.register(r'comment', views.CommentViewSet, basename='comment/')
 
 urlpatterns = [
+    path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
 ]

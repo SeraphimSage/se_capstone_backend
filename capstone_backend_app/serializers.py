@@ -11,8 +11,7 @@ class MyUserSerializer(serializers.ModelSerializer):
             'id',
             'username',
             'password',
-            'display_name',
-
+            'display_name'
         ]
 
 
