@@ -136,6 +136,10 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'capstone_backend_app.MyUser'
 
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'capstone_backend_server.utils.my_jwt_response_handler'
+}
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000"
 ]

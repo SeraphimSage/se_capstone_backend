@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
+from rest_framework_jwt.views import obtain_jwt_token
 
 from capstone_backend_app import views
 
@@ -27,6 +28,7 @@ router.register(r'savedasteroid', views.SavedAsteroidViewSet,
 router.register(r'comment', views.CommentViewSet, basename='comment/')
 
 urlpatterns = [
+    path('auth/login/', obtain_jwt_token),
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
 ]
