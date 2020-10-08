@@ -39,7 +39,7 @@ class MyUserSerializerWithToken(serializers.ModelSerializer):
 
     class Meta:
         model = MyUser
-        fields = ('token', 'username', 'password')
+        fields = ('token', 'username', 'password', 'display_name')
 
 
 class SavedAsteroidSerializer(serializers.ModelSerializer):

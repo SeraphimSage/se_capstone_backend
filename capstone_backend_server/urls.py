@@ -30,5 +30,6 @@ router.register(r'comment', views.CommentViewSet, basename='comment/')
 urlpatterns = [
     path('auth/login/', obtain_jwt_token),
     path('api/', include(router.urls)),
+    path('users/', views.UserList.as_view()),
     path('admin/', admin.site.urls),
 ]
