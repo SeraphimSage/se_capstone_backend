@@ -4,6 +4,7 @@ from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import filters
 
 from capstone_backend_app.models import MyUser, SavedAsteroid, Comment
 from capstone_backend_app.serializers import MyUserSerializer, MyUserSerializerWithToken, SavedAsteroidSerializer, CommentSerializer
@@ -43,6 +44,8 @@ class UserList(APIView):
 class SavedAsteroidViewSet(viewsets.ModelViewSet):
     queryset = SavedAsteroid.objects.all()
     serializer_class = SavedAsteroidSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
 
 
 class CommentViewSet(viewsets.ModelViewSet):
