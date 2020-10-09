@@ -61,6 +61,8 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'title',
+            'attatched',
+            'author',
             'up_vote',
             'down_vote',
             'post_date',
