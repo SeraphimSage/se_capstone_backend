@@ -16,9 +16,9 @@ class MyUser(AbstractUser):
 class SavedAsteroid(models.Model):
     name = models.CharField(max_length=240)
     saved_by = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    favorite = models.BooleanField(default=False)
+    favorite = models.BooleanField(default=False, blank=True)
     date_saved = models.DateTimeField(default=timezone.now)
-    note = models.TextField()
+    note = models.TextField(blank=True)
 
     def __str__(self):
         return f"{self.name} - {self.saved_by}"

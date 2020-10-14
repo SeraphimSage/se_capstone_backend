@@ -42,6 +42,8 @@ class UserList(APIView):
 
 
 class SavedAsteroidViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+
     queryset = SavedAsteroid.objects.all()
     serializer_class = SavedAsteroidSerializer
     filter_backends = [filters.SearchFilter]
