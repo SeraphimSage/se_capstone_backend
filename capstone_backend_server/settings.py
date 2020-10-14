@@ -142,6 +142,8 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'capstone_backend_app.MyUser'
 
 JWT_AUTH = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=2),
+
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'capstone_backend_server.utils.my_jwt_response_handler'
 }
 
