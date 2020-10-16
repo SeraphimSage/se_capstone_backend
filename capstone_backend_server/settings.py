@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from datetime import datetime
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -146,10 +147,10 @@ AUTH_USER_MODEL = 'capstone_backend_app.MyUser'
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'capstone_backend_server.utils.my_jwt_response_handler',
 
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=1500),
+    'JWT_EXPIRATION_DELTA': timedelta(seconds=1500),
 
     'JWT_ALLOW_REFRESH': True,
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
 }
 
 CORS_ALLOWED_ORIGINS = [
