@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -115,6 +116,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
@@ -142,9 +144,12 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'capstone_backend_app.MyUser'
 
 JWT_AUTH = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=2),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'capstone_backend_server.utils.my_jwt_response_handler',
 
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'capstone_backend_server.utils.my_jwt_response_handler'
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=1500),
+
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
 
 CORS_ALLOWED_ORIGINS = [
