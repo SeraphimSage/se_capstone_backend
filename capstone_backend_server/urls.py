@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
-from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 from capstone_backend_app import views
 
@@ -29,6 +29,8 @@ router.register(r'comment', views.CommentViewSet, basename='comment/')
 
 urlpatterns = [
     path('auth/login/', obtain_jwt_token),
+    path('auth/refresh/', refresh_jwt_token),
+    path('auth/verify/', verify_jwt_token),
     path('api/', include(router.urls)),
     path('users/', views.UserList.as_view()),
     path('test500/', views.test_500),

@@ -1,10 +1,11 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action, permission_classes, api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import filters
+from rest_framework import filters, generics
 
 from capstone_backend_app.models import MyUser, SavedAsteroid, Comment
 from capstone_backend_app.serializers import MyUserSerializer, MyUserSerializerWithToken, SavedAsteroidSerializer, CommentSerializer
@@ -47,10 +48,13 @@ class UserList(APIView):
 class SavedAsteroidViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
+    # user = self.request.user
     queryset = SavedAsteroid.objects.all()
     serializer_class = SavedAsteroidSerializer
-    filter_backends = [filters.SearchFilter]
+    # filter_backends = [filters.SearchFilter]
     search_fields = ['name']
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['saved_by']
 
 
 class CommentViewSet(viewsets.ModelViewSet):
