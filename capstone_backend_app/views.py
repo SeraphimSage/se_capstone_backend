@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from rest_framework import permissions, status, viewsets
-from rest_framework.decorators import action, permission_classes
+from rest_framework.decorators import action, permission_classes, api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import filters
@@ -11,6 +11,9 @@ from capstone_backend_app.serializers import MyUserSerializer, MyUserSerializerW
 
 # Create your views here.
 
+@api_view(["GET"])
+def test_500(request):
+    raise (Exception("I AM GOING TO TRIGGER A 500"))
 
 class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]

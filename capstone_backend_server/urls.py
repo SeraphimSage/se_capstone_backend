@@ -31,5 +31,6 @@ urlpatterns = [
     path('auth/login/', obtain_jwt_token),
     path('api/', include(router.urls)),
     path('users/', views.UserList.as_view()),
+    path('test500/', views.test_500),
     path('admin/', admin.site.urls),
 ]
