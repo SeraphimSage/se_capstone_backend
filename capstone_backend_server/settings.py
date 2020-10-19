@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import datetime
+from datetime import timedelta
 from dotenv import load_dotenv
 import os
 
@@ -122,6 +124,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
@@ -149,7 +152,12 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'capstone_backend_app.MyUser'
 
 JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'capstone_backend_server.utils.my_jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'capstone_backend_server.utils.my_jwt_response_handler',
+
+    'JWT_EXPIRATION_DELTA': timedelta(seconds=1500),
+
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
 }
 
 CORS_ALLOWED_ORIGINS = [
