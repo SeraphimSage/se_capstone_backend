@@ -1,6 +1,8 @@
 # Astrillow - Backend
 Built with Django
 
+Frontend: https://github.com/drewradcliff/astrillow-frontend
+
 ## Installation
 1. `poetry install`
 2. `poetry shell`
